@@ -1,7 +1,7 @@
-dojo.require( "dojo._base.lang" );
-dojo.require( "dojo.dnd.Container" );
-dojo.require( "dojo.dnd.Selector" );
-dojo.require( "dojo.dnd.Source" );
+dojo.require( "dojo/_base/lang" );
+dojo.require( "dojo/dnd/Container" );
+dojo.require( "dojo/dnd/Selector" );
+dojo.require( "dojo/dnd/Source" );
 
 //	NOTE:
 //		- A lot of this is just copied and pasted from their dojo.dnd stuff. It would have

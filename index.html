@@ -4,7 +4,7 @@
 	<title>dojo designer</title>
 	<meta charset="UTF-8">
 	
-	<script data-dojo-config="parseOnLoad:true, dojoBlankHtmlUrl: location.pathname.replace(/\/[^/]+$/,'') + '/blank.html'" src="js/dojo/dojo.js"></script>
+	<script data-dojo-config="async:true, parseOnLoad:true, dojoBlankHtmlUrl: location.pathname.replace(/\/[^/]+$/,'') + '/blank.html'" src="js/dojo/dojo.js"></script>
 
 	<script type="text/javascript" src="js/edit_area/edit_area_loader.js"></script>
 	<!--<script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>-->
@@ -20,38 +20,66 @@
 		@import "css/Designer.css";
 	</style>
 	<script type="text/javascript">
-		//designer main layout
-		dojo.require("wuhi.designer.Designer");
+
+		require([
+			"wuhi/designer/Designer",
+			"wuhi/designer/dijit/form/TextBox",
+			"wuhi/designer/dijit/form/Button",
+			"wuhi/designer/dijit/form/CheckBox",
+			"wuhi/designer/dijit/form/RadioButton",
+			"wuhi/designer/dijit/form/DateTextBox",
+			"wuhi/designer/dijit/form/TimeTextBox",
+			"wuhi/designer/dijit/form/Textarea",
+			"wuhi/designer/dijit/form/SimpleTextarea",
+			"wuhi/designer/dijit/Editor",
+			"wuhi/designer/dijit/layout/ContentPane",
+			"wuhi/designer/dijit/layout/TabContainer",
+			"wuhi/designer/dijit/layout/BorderContainer",
+			"wuhi/designer/dijit/layout/AccordionContainer",
+			"wuhi/designer/html/Text",
+			"wuhi/designer/html/HorizontalRule",
+			"wuhi/designer/dijit/form/HorizontalSlider",
+			"wuhi/designer/dijit/form/VerticalSlider",
+			"wuhi/designer/dijit/form/DropDownButton",
+			"wuhi/designer/dijit/Toolbar",
+			"wuhi/designer/dijit/Menu",
+			"wuhi/designer/dijit/MenuItem",
+			"wuhi/designer/dijit/PopupMenuItem",
+			
+			"dojox/fx"
+		])
+		// //designer main layout
+		// dojo.require("wuhi.designer.Designer");
 		
-		//designer widgets for toolbox 		
-		dojo.require("wuhi.designer.dijit.form.TextBox");
-		dojo.require("wuhi.designer.dijit.form.Button");
-		dojo.require("wuhi.designer.dijit.form.CheckBox");
-		dojo.require("wuhi.designer.dijit.form.RadioButton");
-		dojo.require("wuhi.designer.dijit.form.DateTextBox");
-		dojo.require("wuhi.designer.dijit.form.TimeTextBox");
-		dojo.require("wuhi.designer.dijit.form.Textarea");
-		dojo.require("wuhi.designer.dijit.form.SimpleTextarea");
-		dojo.require("wuhi.designer.dijit.Editor");
-		dojo.require("wuhi.designer.dijit.layout.ContentPane");
-		dojo.require("wuhi.designer.dijit.layout.TabContainer");
-		dojo.require("wuhi.designer.dijit.layout.BorderContainer");
-		dojo.require("wuhi.designer.dijit.layout.AccordionContainer");
-		dojo.require("wuhi.designer.html.Text");
-		dojo.require("wuhi.designer.html.HorizontalRule");
-		dojo.require("wuhi.designer.dijit.form.HorizontalSlider");
-		dojo.require("wuhi.designer.dijit.form.VerticalSlider");
-		dojo.require("wuhi.designer.dijit.form.DropDownButton");
-		dojo.require("wuhi.designer.dijit.Toolbar");
-		dojo.require("wuhi.designer.dijit.Menu");
-		dojo.require("wuhi.designer.dijit.MenuItem");
-		dojo.require("wuhi.designer.dijit.PopupMenuItem");
+		// //designer widgets for toolbox 		
+		// dojo.require("wuhi.designer.dijit.form.TextBox");
+		// dojo.require("wuhi.designer.dijit.form.Button");
+		// dojo.require("wuhi.designer.dijit.form.CheckBox");
+		// dojo.require("wuhi.designer.dijit.form.RadioButton");
+		// dojo.require("wuhi.designer.dijit.form.DateTextBox");
+		// dojo.require("wuhi.designer.dijit.form.TimeTextBox");
+		// dojo.require("wuhi.designer.dijit.form.Textarea");
+		// dojo.require("wuhi.designer.dijit.form.SimpleTextarea");
+		// dojo.require("wuhi.designer.dijit.Editor");
+		// dojo.require("wuhi.designer.dijit.layout.ContentPane");
+		// dojo.require("wuhi.designer.dijit.layout.TabContainer");
+		// dojo.require("wuhi.designer.dijit.layout.BorderContainer");
+		// dojo.require("wuhi.designer.dijit.layout.AccordionContainer");
+		// dojo.require("wuhi.designer.html.Text");
+		// dojo.require("wuhi.designer.html.HorizontalRule");
+		// dojo.require("wuhi.designer.dijit.form.HorizontalSlider");
+		// dojo.require("wuhi.designer.dijit.form.VerticalSlider");
+		// dojo.require("wuhi.designer.dijit.form.DropDownButton");
+		// dojo.require("wuhi.designer.dijit.Toolbar");
+		// dojo.require("wuhi.designer.dijit.Menu");
+		// dojo.require("wuhi.designer.dijit.MenuItem");
+		// dojo.require("wuhi.designer.dijit.PopupMenuItem");
 		
-		dojo.require("dojox.fx");
+		// dojo.require("dojox.fx");
 	</script>
 
 </head>
 <body class="claro">
-	<div dojoType="wuhi.designer.Designer" style="height: 100%; width: 100%;"></div>
+	<div dojoType="wuhi/designer/Designer" style="height: 100%; width: 100%;"></div>
 </body>
 </html>
