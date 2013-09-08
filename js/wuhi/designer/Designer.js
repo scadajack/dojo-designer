@@ -22,7 +22,8 @@ define([
 	"dijit/_Widget",
 	"dijit/form/ComboButton",
 	"dijit/Toolbar",
-	"dijit/_Templated",
+	"dijit/_TemplatedMixin",
+	"dijit/_WidgetsInTemplateMixin",
 	"dijit/Tree",
 	"dijit/form/SimpleTextarea",
 	"dijit/form/ToggleButton",
@@ -44,16 +45,16 @@ define([
 	"wuhi/designer/_WidgetDescriptor"
 ], function (dojo, array, parser, declare, topic, domClass, domAttr, ItemFileWriteStore, ItemFileReadStore, 
 			lang, windowModule, Source, domConstruct, domStyle, JSON, on, query, template, MenuItem, Menu, 
-			_Widget, ComboButton, Toolbar, _Templated, Tree, SimpleTextarea, ToggleButton, AccordionContainer, 
+			_Widget, ComboButton, Toolbar, _TemplatedMixin, _WidgetsInTemplateMixin, Tree, SimpleTextarea, ToggleButton, AccordionContainer, 
 			BorderContainer, ContentPane, TabContainer, TreeStoreModel, dndSource, Toaster, DataGrid, 
 			entities, format, Dialog, DesignPane, PropertyGrid, SelectionController, 
 			designer_Widget, _WidgetDescriptor) {
 
 			
-	var Designer = declare("wuhi.designer.Designer", [_Widget, _Templated],{
+	var Designer = declare("wuhi.designer.Designer", [_Widget, _TemplatedMixin, _WidgetsInTemplateMixin],{
 	
 		templateString: template,
-		widgetsInTemplate: true,
+//		widgetsInTemplate: true,
 		_objectTree: null,
 		_objectTreeStore: null,
 		alignToGrid: true,
@@ -101,7 +102,24 @@ define([
 				
 			//start editarea
 			this._activateCodeEditors();
+
+				// NOTE: This is not a comprehensive listener. There are some text areas in the 
+				//  document that tend to grab the window focus and cause events to not be captured by 
+				//  this node tree (instead, the IFrame captures them.) Need to manage the IFrames' focus 
+				//  better for this to work!
+			this.ownerDocument.addEventListener('keydown',this.escListener,true);
+
 		},
+
+		escListener : function(event){
+			switch (event.keyCode){
+				case 27: console.log("ESC Pressed");
+						 topic.publish("document/ESC",event);
+						 break;
+				default: console.log("keydown event:",event);
+			}
+		},
+
 		createHistoryStep:function(){
 			var content = domAttr.get(lang.clone(this.codePaneInternal), "innerHTML");
 	

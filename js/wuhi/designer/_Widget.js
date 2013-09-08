@@ -4,7 +4,7 @@ define([
 	"dojo/_base/declare",
 	"dojo/_base/array",
 	"dojo/_base/lang",
-	"dojo/dnd/Moveable",
+	"wuhi/designer/dnd/EscapableMoveable",
 	"dojo/dnd/Source",
 	"dojo/dom-class",
 	"dojo/dom-construct",
@@ -18,7 +18,7 @@ define([
 	"dojox/html/format",
 	"wuhi/designer/ResizeHandle",
 	"wuhi/designer/_WidgetDescriptor"
-], function (dojo, domAttr, declare, array, lang, Moveable, Source, domClass, domConstruct, domStyle, JSON, on, query, topic, _Widget, entities, format, ResizeHandle, _WidgetDescriptor) {
+], function (dojo, domAttr, declare, array, lang, EscapableMoveable, Source, domClass, domConstruct, domStyle, JSON, on, query, topic, _Widget, entities, format, ResizeHandle, _WidgetDescriptor) {
 
 	var _Widget = declare("wuhi.designer._Widget", _Widget, {
 		
@@ -102,7 +102,7 @@ define([
 					this._dndMoveHandle.destroy();
 					this._dndMoveHandle = null;
 				}
-				this._dndMoveHandle = new Moveable(this.domNode);
+				this._dndMoveHandle = new EscapableMoveable(this.domNode); //new Moveable(this.domNode);
 				
 				this._dndMoveHandle.onMoving = lang.hitch(this, "_onDndMoving");
 	
