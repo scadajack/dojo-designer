@@ -1,23 +1,26 @@
-dojo.provide("wuhi.designer.dijit.form.DateTextBox");
+define([
+	"dojo/_base/declare",
+	"dijit/form/DateTextBox",
+	"wuhi/designer/_Widget"
+], function (declare, DateTextBox, _Widget) {
 
-dojo.require("wuhi.designer._Widget");
-dojo.require("dijit.form.DateTextBox");
-
-dojo.declare("wuhi.designer.dijit.form.DateTextBox", [dijit.form.DateTextBox, wuhi.designer._Widget], {
+	var DateTextBox = declare("wuhi.designer.dijit.form.DateTextBox", [DateTextBox, _Widget], {
+		
+		dojoClass: "dijit.form.DateTextBox",
+		_toolboxImg: "Control_DateTextBox.png",
+		_resizeAxis: "x",
+		
+		_getAcceptAttr:function(){
+			return [];
+		},
+		postInstance:function(){
+		
+		},
+		_open:function(){
+			//remove the calendar on click
+		}
+	});
 	
-	dojoClass: "dijit.form.DateTextBox",
-	_toolboxImg: "Control_DateTextBox.png",
-	_resizeAxis: "x",
-	
-	_getAcceptAttr:function(){
-		return [];
-	},
-	postInstance:function(){
-	
-	},
-	_open:function(){
-		//remove the calendar on click
-	}
+	wuhi.designer.Designer.prototype.registerClass(wuhi.designer.dijit.form.DateTextBox);
+	return DateTextBox;
 });
-
-wuhi.designer.Designer.prototype.registerClass(wuhi.designer.dijit.form.DateTextBox);

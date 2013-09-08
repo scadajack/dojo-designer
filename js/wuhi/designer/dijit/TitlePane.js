@@ -1,24 +1,28 @@
-dojo.provide("wuhi.designer.dijit.TitlePane");
+define([
+	"dojo/_base/declare",
+	"dojo/dom-construct",
+	"dijit/TitlePane",
+	"wuhi/designer/_Widget"
+], function (declare, domConstruct, TitlePane, _Widget) {
 
-dojo.require("wuhi.designer._Widget");
-dojo.require("dijit.TitlePane");
-
-dojo.declare("wuhi.designer.dijit.TitlePane", [dijit.TitlePane, wuhi.designer._Widget], {
+	var TitlePane = declare("wuhi.designer.dijit.TitlePane", [TitlePane, _Widget], {
+		
+		dojoClass: "dijit.TitlePane",
+		resizeable: false,
+		needsRecreate: true,
+		_getDefaultsAttr: function(){
+			return [
+				{"name": "title", "value": this.get("NextWidgetPrintname")}
+			];
+		},
+		postInstance:function(){
+			//this.startup();
+		},
+		placeChildWidget:function(widget){
+			domConstruct.place(widget.domNode, this.containerNode);
+		}
+	});
 	
-	dojoClass: "dijit.TitlePane",
-	resizeable: false,
-	needsRecreate: true,
-	_getDefaultsAttr: function(){
-		return [
-			{"name": "title", "value": this.attr("NextWidgetPrintname")}
-		];
-	},
-	postInstance:function(){
-		//this.startup();
-	},
-	placeChildWidget:function(widget){
-		dojo.place(widget.domNode, this.containerNode);
-	}
+	wuhi.designer.Designer.prototype.registerClass(wuhi.designer.dijit.TitlePane);
+	return TitlePane;
 });
-
-wuhi.designer.Designer.prototype.registerClass(wuhi.designer.dijit.TitlePane);

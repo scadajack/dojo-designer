@@ -1,11 +1,11 @@
-<div>
-	<div dojoAttachPoint="dialog" dojoType="dijit.Dialog" title="${title}" style="${style}">
-		<div class="dijitDialogPaneContentArea" dojoAttachPoint="contentArea">
+<html><body><div>
+	<div title="${title}" style="${style}" data-dojo-attach-point="dialog" data-dojo-type="dijit/Dialog">
+		<div class="dijitDialogPaneContentArea" data-dojo-attach-point="contentArea">
 			
 		</div>
 
 		<div class="dijitDialogPaneActionBar">
-			<button dojoType="dijit.form.Button" dojoAttachEvent="onClick:_onOkClick">OK</button>
+			<button data-dojo-attach-event="onClick:_onOkClick" data-dojo-type="dijit/form/Button">OK</button>
 		</div>
 	</div>
-</div>
+</div></body></html>

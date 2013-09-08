@@ -1,52 +1,52 @@
-<div>
-	<div dojoType="dijit.layout.BorderContainer" dojoAttachPoint="borderContainer" design="sidebar" style="height: 100%; width: 100%; border: none;">
-			<div dojoType="dijit.Toolbar" region="top" dojoAttachPoint="toolBar">
-			    <div dojoType="dijit.form.Button" dojoAttachEvent="onClick:_onPreviewClick" iconClass="wuhiDesignerIcon wuhiDesignerIconPlay" showLabel="false">
+<html><body><div>
+	<div style="height: 100%; width: 100%; border: none;" data-dojo-attach-point="borderContainer" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props='"design":"sidebar"'>
+			<div data-dojo-attach-point="toolBar" data-dojo-type="dijit/Toolbar" data-dojo-props='"region":"top"'>
+			    <div data-dojo-attach-event="onClick:_onPreviewClick" data-dojo-type="dijit/form/Button" data-dojo-props='"iconclass":"wuhiDesignerIcon wuhiDesignerIconPlay","showlabel":false'>
 				Run
 			    </div>		
-			    <div dojoType="dijit.form.DropDownButton" showLabel="true" iconClass="wuhiDesignerIcon wuhiDesignerIconTheme">
+			    <div data-dojo-type="dijit/form/DropDownButton" data-dojo-props='"showlabel":true,"iconclass":"wuhiDesignerIcon wuhiDesignerIconTheme"'>
 					<span>Theme</span>
-					<div dojoType="dijit.Menu" style="display: none;">
-						<div dojoType="dijit.MenuItem" dojoAttachEvent="onClick:_onClickClaro">claro</div>
-						<div dojoType="dijit.MenuItem" dojoAttachEvent="onClick:_onClickTundra">tundra</div>
+					<div style="display: none;" data-dojo-type="dijit/Menu">
+						<div data-dojo-attach-event="onClick:_onClickClaro" data-dojo-type="dijit/MenuItem">claro</div>
+						<div data-dojo-attach-event="onClick:_onClickTundra" data-dojo-type="dijit/MenuItem">tundra</div>
 					</div>
 			    </div>	
-			    <div dojoType="dijit.form.Button" dojoAttachEvent="onClick:_onUndoClick" dojoAttachPoint="undoButton" iconClass="wuhiDesignerIcon wuhiDesignerIconUndo" showLabel="false">
+			    <div data-dojo-attach-point="undoButton" data-dojo-attach-event="onClick:_onUndoClick" data-dojo-type="dijit/form/Button" data-dojo-props='"iconclass":"wuhiDesignerIcon wuhiDesignerIconUndo","showlabel":false'>
 				Back
 			    </div>	
-			    <div dojoType="dijit.form.Button" dojoAttachEvent="onClick:_onRedoClick" dojoAttachPoint="redoButton" iconClass="wuhiDesignerIcon wuhiDesignerIconRedo" showLabel="false">
+			    <div data-dojo-attach-point="redoButton" data-dojo-attach-event="onClick:_onRedoClick" data-dojo-type="dijit/form/Button" data-dojo-props='"iconclass":"wuhiDesignerIcon wuhiDesignerIconRedo","showlabel":false'>
 				Forward
 			    </div>		
-				<div dojoType="dijit.form.ToggleButton" checked="true" iconClass="wuhiDesignerIcon wuhiDesignerIconAlignToGrid" showLabel="false" dojoAttachEvent="onChange:_onAlignToGridChanged">
+				<div checked data-dojo-attach-event="onChange:_onAlignToGridChanged" data-dojo-type="dijit/form/ToggleButton" data-dojo-props='"iconclass":"wuhiDesignerIcon wuhiDesignerIconAlignToGrid","showlabel":false'>
 					Align to Grid
 				</div>
-				<div dojoType="dijit.form.ToggleButton" checked="${useHtml5Markup}" title="uses html5 custom-data-attributes in the markup (experimental)" showLabel="true" dojoAttachEvent="onChange:_onHtml5ButtonChanged">
+				<div checked title="uses html5 custom-data-attributes in the markup (experimental)" data-dojo-attach-event="onChange:_onHtml5ButtonChanged" data-dojo-type="dijit/form/ToggleButton" data-dojo-props='"showlabel":true'>
 					HTML5
 				</div>					
 			</div>
-			<div dojoType="dijit.layout.BorderContainer" region="leading" design="headline" style="width: 260px; padding: 0;" gutters="true">
+			<div style="width: 260px; padding: 0;" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props='"region":"leading","design":"headline","gutters":true'>
 				
-				<div dojoType="dijit.layout.AccordionContainer" region="top" style="width: 100%; height: 350px;" splitter="true">
-					<div dojoType="dijit.layout.ContentPane"  title="Toolbox" dojoAttachPoint="toolBox">
-						<div dojoAttachPoint="toolboxDndSource" copyOnly="true" selfAccept="false" selfCopy="false">
+				<div style="width: 100%; height: 350px;" data-dojo-type="dijit/layout/AccordionContainer" data-dojo-props='"region":"top","splitter":true'>
+					<div title="Toolbox" data-dojo-attach-point="toolBox" data-dojo-type="dijit/layout/ContentPane">
+						<div copyonly="true" selfaccept="false" selfcopy="false" data-dojo-attach-point="toolboxDndSource">
 						</div>
 					</div>
 				</div>
 				
-				<div dojoType="dijit.layout.AccordionContainer" region="center" splitter="true">
-					<div dojoType="dijit.layout.ContentPane" title="Property Grid">
-						<div dojoType="wuhi.designer.PropertyGrid" dojoAttachPoint="propertyGrid" style="height: 100%; width: 100%;">
+				<div data-dojo-type="dijit/layout/AccordionContainer" data-dojo-props='"region":"center","splitter":true'>
+					<div title="Property Grid" data-dojo-type="dijit/layout/ContentPane">
+						<div style="height: 100%; width: 100%;" data-dojo-attach-point="propertyGrid" data-dojo-type="wuhi/designer/PropertyGrid">
 						</div>
 
 					</div>
 				</div>
 			</div>
 		
-			<div dojoType="wuhi.designer.DesignPane" dojoAttachPoint="designerPane" region="center">
+			<div data-dojo-attach-point="designerPane" data-dojo-type="wuhi/designer/DesignPane" data-dojo-props='"region":"center"'>
 			</div>
 						
-			<div dojoType="dijit.layout.AccordionContainer" region="trailing" splitter="true" style="width: 260px;">
-				<div dojoType="dijit.layout.ContentPane" title="Object Explorer" dojoAttachPoint="objectExplorer">
+			<div style="width: 260px;" data-dojo-type="dijit/layout/AccordionContainer" data-dojo-props='"region":"trailing","splitter":true'>
+				<div title="Object Explorer" data-dojo-attach-point="objectExplorer" data-dojo-type="dijit/layout/ContentPane">
 
 				</div>
 				<!--
@@ -56,10 +56,10 @@
 				-->
 			</div>
 			
-			<div dojoType="dijit.layout.TabContainer" region="bottom" style="height: 220px;" splitter="true" minSize="40">
+			<div style="height: 220px;" data-dojo-type="dijit/layout/TabContainer" data-dojo-props='"region":"bottom","splitter":true,"minsize":40'>
 			
-				<div dojoType="dijit.layout.ContentPane" title="HTML">
-					<div  dojoType="dijit.form.SimpleTextarea" dojoAttachPoint="codePaneExternal" style="width: 100%; height: 100%">
+				<div title="HTML" data-dojo-type="dijit/layout/ContentPane">
+					<div style="width: 100%; height: 100%" data-dojo-attach-point="codePaneExternal" data-dojo-type="dijit/form/SimpleTextarea">
 					</div>
 				</div>
 				<!--	
@@ -79,8 +79,7 @@
 			
 		</div>	
 		
-		<div style="display: none" dojoAttachPoint="codePaneInternal">
-		</div>
-		<div dojoType="dojox.widget.Toaster" dojoAttachPoint="mainToaster" duration="10000" positionDirection="br-left">
+		<div style="display: none" data-dojo-attach-point="codePaneInternal"></div>
+		<div data-dojo-attach-point="mainToaster" data-dojo-type="dojox/widget/Toaster" data-dojo-props='"duration":10000,"positiondirection":"br-left"'>
 	</div>
-<div>
+<div></div></div></body></html>

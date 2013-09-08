@@ -1,27 +1,32 @@
-dojo.provide("wuhi.designer.html.Text");
+define([
+	"dojo",
+	"dojo/_base/declare",
+	"dojo/dom-attr",
+	"wuhi/designer/_Widget"
+], function (dojo, declare, domAttr, _Widget) {
 
-dojo.require("wuhi.designer._Widget");
-
-dojo.declare("wuhi.designer.html.Text", wuhi.designer._Widget, {
+	var Text = declare("wuhi.designer.html.Text", _Widget, {
+		
+		dojoClass: "html.Text",
+		isDojoWidget: false,
+		baseElement: "span",
+		resizeable: false,
+		_toolboxImg: "Control_Label.png",
+		_getDefaultsAttr: function(){
+			return [{"name": "innerHTML", "value": this.get("NextWidgetPrintname")}];
+		},
+		_getAcceptAttr:function(){
+			return [];
+		},
+		_setInnerHTMLAttr:function(value){
+			this.innerHTML = value;
+			domAttr.set(this.domNode, "innerHTML", value);
+		},
+		_getInnerHTMLAttr:function(){
+			return this.innerHTML;
+		}
+	});
 	
-	dojoClass: "html.Text",
-	isDojoWidget: false,
-	baseElement: "span",
-	resizeable: false,
-	_toolboxImg: "Control_Label.png",
-	_getDefaultsAttr: function(){
-		return [{"name": "innerHTML", "value": this.attr("NextWidgetPrintname")}];
-	},
-	_getAcceptAttr:function(){
-		return [];
-	},
-	_setInnerHTMLAttr:function(value){
-		this.innerHTML = value;
-		dojo.attr(this.domNode, "innerHTML", value);
-	},
-	_getInnerHTMLAttr:function(){
-		return this.innerHTML;
-	}
+	wuhi.designer.Designer.prototype.registerClass(wuhi.designer.html.Text);
+	return Text;
 });
-
-wuhi.designer.Designer.prototype.registerClass(wuhi.designer.html.Text);
