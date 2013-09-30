@@ -42,13 +42,14 @@ define([
 	"wuhi/designer/PropertyGrid",
 	"wuhi/designer/SelectionController",
 	"wuhi/designer/_Widget",
-	"wuhi/designer/_WidgetDescriptor"
+	"wuhi/designer/_WidgetDescriptor",
+	"wuhi/designer/Toolbox"
 ], function (dojo, array, parser, declare, topic, domClass, domAttr, ItemFileWriteStore, ItemFileReadStore, 
 			lang, windowModule, Source, domConstruct, domStyle, JSON, on, query, template, MenuItem, Menu, 
 			_Widget, ComboButton, Toolbar, _TemplatedMixin, _WidgetsInTemplateMixin, Tree, SimpleTextarea, ToggleButton, AccordionContainer, 
 			BorderContainer, ContentPane, TabContainer, TreeStoreModel, dndSource, Toaster, DataGrid, 
 			entities, format, Dialog, DesignPane, PropertyGrid, SelectionController, 
-			designer_Widget, _WidgetDescriptor) {
+			designer_Widget, _WidgetDescriptor,Toolbox) {
 
 			
 	var Designer = declare("wuhi.designer.Designer", [_Widget, _TemplatedMixin, _WidgetsInTemplateMixin],{
@@ -67,32 +68,34 @@ define([
 			//set designer for the deisgnerpane (first widget) it will inherit the designer to all created child widgets
 			this.designerPane.designer = this;
 			this.propertyGrid.designer = this;
+			this.widgetToolbox.designer = this;
 			this.selectionController = new SelectionController(this);
 			
 			this.inherited("postCreate", arguments);
 
 			//add all avaliable designer-widgets to the toolbox
 			array.forEach(wuhi.designer.registry.classes, function(entry){
-					if(entry.type == "designerWidgetClass" ){
-						var proto = entry.content.prototype;
+					this.loadWidgetToolbox(entry);
+					// if(entry.type == "designerWidgetClass" ){
+					// 	var proto = entry.content.prototype;
 	
-						var entry = domConstruct.create("div", {"dndType": proto.dojoClass, "dojoClass": proto.dojoClass});
-						var cellLeft = domConstruct.create("div", {"style": {"float": "left", "width": "20px"}}, entry);
-						var img = domConstruct.create("img", {"src": "img/" + proto._toolboxImg}, cellLeft);
-						var cellRight = domConstruct.create("div", {"innerHTML": proto.dojoClass}, entry);
+					// 	var entry = domConstruct.create("div", {"dndType": proto.dojoClass, "dojoClass": proto.dojoClass});
+					// 	var cellLeft = domConstruct.create("div", {"style": {"float": "left", "width": "20px"}}, entry);
+					// 	var img = domConstruct.create("img", {"src": "img/" + proto._toolboxImg}, cellLeft);
+					// 	var cellRight = domConstruct.create("div", {"innerHTML": proto.dojoClass}, entry);
 						
-						domClass.add(entry, "dojoDndItem");
-						domConstruct.place(entry,  this.toolboxDndSource);
-					}
+					// 	domClass.add(entry, "dojoDndItem");
+					// 	domConstruct.place(entry,  this.toolboxDndSource);
+					// }
 				}, this
 			);
 				
 			//enable dnd
-			this._toolboxDndSource = new Source(this.toolboxDndSource);
-			on(this._toolboxDndSource, "DndStart", lang.hitch(this, function(){
-				//remove the selection if dnd is in progress. this is needed because the selection-avatar has a higher zIndex than the dnd-target of the widget
-				this.selectionController.removeSelection();
-			}));
+			// this._toolboxDndSource = new Source(this.toolboxDndSource);
+			// on(this._toolboxDndSource, "DndStart", lang.hitch(this, function(){
+			// 	// remove the selection if dnd is in progress. this is needed because the selection-avatar has a higher zIndex than the dnd-target of the widget
+			// 	this.selectionController.removeSelection();
+			// }));
 				
 			//this.mainToaster.setContent('did you know?<p>...you can resize the widgets with a doubleclick...</p>', 'message');
 			//this.mainToaster.show();
@@ -109,6 +112,48 @@ define([
 				//  better for this to work!
 			this.ownerDocument.addEventListener('keydown',this.escListener,true);
 
+		},
+
+		loadWidgetToolbox : function(entry){
+
+			if(entry.type == "designerWidgetClass" ){
+				this.widgetToolbox.addWidgetClass(entry);
+				// var category = entry.category || 'standard';
+				// var refName;
+
+				// if (category == 'standard'){
+				// 	refName = "toolboxDndSource";
+				// }  else {
+				// 	refName = category.replace(' ','_').toLowerCase();
+				// }
+				// 	if (!this[refName]){
+				// 		// build content pane containing a dndSource div to hold widgets
+				// 		this[refName] = domConstruct.create("div", {copyonly:"true", selfaccept:"false", selfcopy:"false"});
+				// 		var cp = new ContentPane({title: category});
+				// 		this[refName] = domConstruct.place(this[refName],cp.domNode);
+				// 		cp.placeAt(this.toolboxContainer,'last');
+
+				// 		this[refName + "DndSource"] = new Source(this[refName]);
+				// 		on(this[refName + "DndSource"], "DndStart", lang.hitch(this, function(){
+				// 			//remove the selection if dnd is in progress. this is needed because the selection-avatar has a higher zIndex than the dnd-target of the widget
+				// 			this.selectionController.removeSelection();
+				// 		}));
+				// 	}
+					
+				// //}
+				// var ref = this[refName];
+				// var proto = entry.content.prototype;
+
+				// var entry = domConstruct.create("div", {"dndType": proto.dojoClass, "dojoClass": proto.dojoClass});
+				// var cellLeft = domConstruct.create("div", {"style": {"float": "left", "width": "20px"}}, entry);
+				// var img = domConstruct.create("img", {"src": "img/" + proto._toolboxImg}, cellLeft);
+				// var cellRight = domConstruct.create("div", {"innerHTML": proto.dojoClass}, entry);
+				
+				// domClass.add(entry, "dojoDndItem");
+				// domConstruct.place(entry,  ref);
+				// 	// now we need to let the dnd container be aware of the new dnd item.
+				// this[refName + "DndSource"].sync();
+			}
 		},
 
 		escListener : function(event){

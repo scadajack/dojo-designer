@@ -26,13 +26,21 @@
 			</div>
 			<div style="width: 260px; padding: 0;" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props='"region":"leading","design":"headline","gutters":true'>
 				
-				<div style="width: 100%; height: 350px;" data-dojo-type="dijit/layout/AccordionContainer" data-dojo-props='"region":"top","splitter":true'>
-					<div title="Toolbox" data-dojo-attach-point="toolBox" data-dojo-type="dijit/layout/ContentPane">
-						<div copyonly="true" selfaccept="false" selfcopy="false" data-dojo-attach-point="toolboxDndSource">
-						</div>
-					</div>
+				<div style="width: 100%; height: 350px;" data-dojo-type="dijit/layout/ContentPane" data-dojo-props='"region":"top","splitter":true'>
+					<div data-dojo-type="wuhi/designer/Toolbox" data-dojo-attach-point="widgetToolbox"></div>
+					<!-- <div style="margin: 10px auto;text-align:center">Widget Toolbox</div> -->
+					<!-- <div style="width: 100%;" data-dojo-type="dijit/layout/AccordionContainer" data-dojo-attach-point="toolboxContainer"> -->
+						<!-- <div title="Standard" data-dojo-attach-point="toolBox" data-dojo-type="dijit/layout/ContentPane">
+							<div copyonly="true" selfaccept="false" selfcopy="false" data-dojo-attach-point="toolboxDndSource">
+							</div>
+						</div> -->
+						<!-- <div title="Rex" data-dojo-attach-point="rex" data-dojo-type="dijit/layout/ContentPane">
+							<div copyonly="true" selfaccept="false" selfcopy="false">
+								Data widgets
+							</div>
+						</div> -->
+					<!-- </div> -->
 				</div>
-				
 				<div data-dojo-type="dijit/layout/AccordionContainer" data-dojo-props='"region":"center","splitter":true'>
 					<div title="Property Grid" data-dojo-type="dijit/layout/ContentPane">
 						<div style="height: 100%; width: 100%;" data-dojo-attach-point="propertyGrid" data-dojo-type="wuhi/designer/PropertyGrid">

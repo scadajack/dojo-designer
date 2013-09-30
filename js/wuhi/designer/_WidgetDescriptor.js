@@ -19,9 +19,77 @@ define([
 			}, this);
 			return props;
 		},//@TODO: cobine style-items to an object like dojo.style needs
+		getAttribute : function(dojoClasses,attr){
+			// summary:
+			//    Searches for attributes in the dojoClasses provided, or thier parents,
+			//    in a breadth first pattern, returning the first value it finds for 
+			//    the attribute.
+			//
+			var result,
+				parents = {};
+
+			if (!(dojoClasses instanceof Array))
+				dojoClasses = [dojoClasses];
+
+			var result = array.filter(dojoClasses,function(dojoClass){
+				var it = this.getItemByClass(dojoClass);
+				if(it[attr])
+					return true;
+				else if (it.parents){
+					array.forEach(it.parents,function(parent){
+						parents[parent] = 1;
+					});
+				} 
+				return false;
+			},this);
+			if (result[0]){
+				var it = this.getItemByClass(result[0]);
+				return it && it[attr];
+			} else {
+				var p = Object.keys(parents);
+				if (p.length > 0)
+					return this.getAttribute(Object.keys(parents),attr);
+			}
+				
+			
+		},
+		getInheritanceList : function(dojoClass){
+			// summary:
+			//    Returns a list of the dojoClass and it's parents 
+			//    in a breadth first order with respect to inheritance. 
+			//    NOTE: Returns just the dojoClass names, not the full record.
+			//
+			var parents = [dojoClass],
+				newParents = [];
+			var it = this.getItemByClass(dojoClass);
+			if (it.parents){
+				newParents = it.parents
+			}
+			while (newParents.length > 0){
+				var c = newParents;
+				newParents = [];
+				array.forEach(c,function(parent){
+					it = this.getItemByClass(parent);
+					it.parents && (newParents = newParents.concat(it.parents));
+				},this);
+				parents = parents.concat(c);
+			}
+			return parents;
+		},
+		getItemByClass : function(dojoClass){
+			var result = array.filter(this.items,function(item){
+				return item.dojoClass == dojoClass;
+			},this);
+			return result[0];
+		},
+		addItem : function(item){
+			this.items.push(item);
+		},
+
 		items: 	[
 					{
 						"dojoClass": "_designerBase",
+						"category" : "Standard",
 						"properties": [
 							//{"name": "id", "type": "string"},
 							{"name": "position", "type": "string", "isStyle": true},
