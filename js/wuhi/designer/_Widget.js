@@ -17,10 +17,12 @@ define([
 	"dojox/html/entities",
 	"dojox/html/format",
 	"wuhi/designer/ResizeHandle",
-	"wuhi/designer/_WidgetDescriptor"
-], function (dojo, domAttr, declare, array, lang, EscapableMoveable, Source, domClass, domConstruct, domStyle, JSON, on, query, topic, _Widget, entities, format, ResizeHandle, _WidgetDescriptor) {
+	"wuhi/designer/_WidgetDescriptor",
+	"plugins/widget/_pluginReceptive"
+], function (dojo, domAttr, declare, array, lang, EscapableMoveable, Source, domClass, domConstruct, domStyle, JSON, on, query, 
+				topic, _Widget, entities, format, ResizeHandle, _WidgetDescriptor, _pluginReceptive) {
 
-	var _Widget = declare("wuhi.designer._Widget", _Widget, {
+	var _Widget = declare("wuhi.designer._Widget", [_Widget, _pluginReceptive], {
 		
 		dojoClass: "", //like dijit.form.TextBox
 		moveable: true,

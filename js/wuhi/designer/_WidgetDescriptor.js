@@ -82,8 +82,13 @@ define([
 			},this);
 			return result[0];
 		},
-		addItem : function(item){
-			this.items.push(item);
+		addItems : function(items){
+			if (items instanceof Array){
+				items.forEach(function(item){
+					this.addItems(item);
+				},this);
+			} else
+				this.items.push(items);
 		},
 
 		items: 	[

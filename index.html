@@ -4,19 +4,32 @@
 	<title>dojo designer</title>
 	<meta charset="UTF-8">
 	
-	<script data-dojo-config="async:true, parseOnLoad:true, dojoBlankHtmlUrl: location.pathname.replace(/\/[^/]+$/,'') + '/blank.html'" src="js/dojo/dojo.js"></script>
+	<script data-dojo-config="async:true, parseOnLoad:true, dojoBlankHtmlUrl: location.pathname.replace(/\/[^/]+$/,'') + '/blank.html',
+	 packages: [
+	         {name: 'wuhi', location: location.pathname.replace(/\/[^/]*$/,'') + '/js/wuhi'}
+	        ,{name: 'plugins', location: location.pathname.replace(/\/[^/]*$/,'') + '/js/plugins'}
+	        ,{name: 'dataDog', location: location.pathname.replace(/\/[^/]*$/,'') + '/js/dataDog/js'}
+	        ,{name: 'dgrid', location: location.pathname.replace(/\/[^/]*$/,'') + '/js/dgrid'}
+	        ,{name: 'xstyle', location: location.pathname.replace(/\/[^/]*$/,'') + '/js/xstyle'}
+	        ,{name: 'put-selector', location: location.pathname.replace(/\/[^/]*$/,'') + '/js/put-selector'}
+
+	 ]"
+
+	src="js/dojo/dojo/dojo.js"></script>
 
 	<script type="text/javascript" src="js/edit_area/edit_area_loader.js"></script>
 	<!--<script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>-->
 <!--	<script type="text/javascript" src="ExtendedDnd.js"></script> -->
 	<style type="text/css">
-		@import "js/dojo/resources/dojo.css";
-		@import "js/dijit/themes/claro/claro.css";
-		@import "js/dijit/themes/tundra/tundra.css";
-		@import "js/dojox/grid/resources/claroGrid.css";
-		@import "js/dojox/grid/resources/tundraGrid.css";
-		@import "js/dojox/widget/Toaster/Toaster.css";
-		@import "js/dojox/widget/Dialog/Dialog.css";	
+		@import "js/dojo/dojo/resources/dojo.css";
+		@import "js/dojo/dijit/themes/claro/claro.css";
+		@import "js/dojo/dijit/themes/tundra/tundra.css";
+		@import "js/dojo/dijit/themes/claro/layout/TabContainer.css";
+		@import "js/dojo/dijit/themes/tundra/layout/TabContainer.css";
+		@import "js/dojo/dojox/grid/resources/claroGrid.css";
+		@import "js/dojo/dojox/grid/resources/tundraGrid.css";
+		@import "js/dojo/dojox/widget/Toaster/Toaster.css";
+		@import "js/dojo/dojox/widget/Dialog/Dialog.css";	
 		@import "css/Designer.css";
 	</style>
 	<script type="text/javascript">
@@ -46,6 +59,7 @@
 			"wuhi/designer/dijit/Menu",
 			"wuhi/designer/dijit/MenuItem",
 			"wuhi/designer/dijit/PopupMenuItem",
+			"plugins/widget/StandardPlugins",
 			
 			"dojox/fx"
 		])

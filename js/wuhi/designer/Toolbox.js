@@ -59,7 +59,6 @@ define([
 				var animation = this._animation;
 				var w = aspect.after(this._animation,"onEnd",function(){
 					self.containerNode.domNode.parentNode.parentNode.style['overflow'] = self._tmpScrollProps;
-					self.containerNode.domNode.parentNode.parentNode.style['height'] = '100%';
 
 					self.containerNode.domNode.parentNode.parentNode.scrollTop=0;
 					w.remove();
@@ -74,7 +73,7 @@ define([
 			//    declared.
 			var dojoClass = widgetClass.content.prototype.dojoClass;
 			var category = _WidgetDescriptor.prototype.getAttribute(dojoClass,'category') || 'Misc';
-			var p = _WidgetDescriptor.prototype.getInheritanceList(dojoClass);
+			//var p = _WidgetDescriptor.prototype.getInheritanceList(dojoClass);
 
 			var refName;
 
@@ -83,19 +82,19 @@ define([
 				}  else {
 					refName = category.replace(' ','_').toLowerCase();
 				}
-					if (!this[refName]){
-						// build content pane containing a dndSource div to hold widgets
-						this[refName] = domConstruct.create("div", {copyonly:"true", selfaccept:"false", selfcopy:"false"});
-						var cp = new ContentPane({title: category});
-						this[refName] = domConstruct.place(this[refName],cp.domNode);
-						cp.placeAt(this.containerNode,'last');
+				if (!this[refName]){
+					// build content pane containing a dndSource div to hold widgets
+					this[refName] = domConstruct.create("div", {copyonly:"true", selfaccept:"false", selfcopy:"false"});
+					var cp = new ContentPane({title: category});
+					this[refName] = domConstruct.place(this[refName],cp.domNode);
+					cp.placeAt(this.containerNode,'last');
 
-						this[refName + "DndSource"] = new Source(this[refName]);
-						on(this[refName + "DndSource"], "DndStart", lang.hitch(this, function(){
-							//remove the selection if dnd is in progress. this is needed because the selection-avatar has a higher zIndex than the dnd-target of the widget
-							this.designer.selectionController.removeSelection();
-						}));
-					}
+					this[refName + "DndSource"] = new Source(this[refName]);
+					on(this[refName + "DndSource"], "DndStart", lang.hitch(this, function(){
+						//remove the selection if dnd is in progress. this is needed because the selection-avatar has a higher zIndex than the dnd-target of the widget
+						this.designer.selectionController.removeSelection();
+					}));
+				}
 					
 				//}
 				var ref = this[refName];
